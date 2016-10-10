@@ -1,0 +1,16 @@
+<?php
+echo $this->headtitle($this->escapehtml($this->translate('Danh sách Banner')));
+echo $this->headScript()->prependFile($this->basePath() . '/js/article/articlec.js', 'text/javascript');
+
+echo $this->partial ( 'partial/form', array (
+		'form' => $this->fFilter
+) );
+echo $dg = new \Admin\Dg\DgBanner( array (
+		'data' => $this->results->getData (),
+		'paging' => $this->results->getPaging (),
+		'rowCount' => $this->results->getRowCount (),
+		'rowInPage' => $this->results->getRowInPage (),
+));
+?>
+<div id="confdelete"></div>
+<div id="err"></div>

@@ -1,0 +1,117 @@
+
+
+/****** Category News ********/
+.navNews{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+.navNews li{
+    display: inline-block;
+    margin: 0 15px;
+}
+.navNews li a{
+    color: #999;
+    font-size: 15px;
+}
+.navNews li a:hover, .navNews li a.active{
+    color: #333;
+    text-decoration: underline;
+}
+.lNCategory li{
+    height: 269px;
+    margin: 0 2% 15px 0;
+}
+.lNCategory li:nth-child(3n+0){
+    margin: 0 0 15px 0;
+}
+.lNCategory li h2 {
+    margin: 0 0;
+    font-size: 23px;
+    font-weight: 300;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 12px 10px 10px 10px;
+    border-bottom: none;
+    background: #111;
+    color: #fff;
+}
+.lNCategory li h2 a{
+    color: #FFF;
+}
+.lNCategory li h2 a:hover{
+    color: #fff;
+    opacity: 0.8;
+}
+
+/****** paginator *******/
+.paginatorProduct .paginator{
+    text-align: center;
+    border-top: 2px solid #333;
+    padding: 15px 0 0 0;
+}
+.paginatorProduct .paginator a{
+    display: inline-block;
+    padding: 6px 13px;
+    text-align: center;
+    border: 1px solid #999;
+    margin: 0 0 0 5px;
+    color: #333;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.paginatorProduct .paginator a.currentPage{
+    background: #f8f8f8;
+}
+.paginatorProduct .paginator a.paging-first:after{
+    content: "\f100";
+}
+.paginatorProduct .paginator a.paging-previous:after{
+    content: "\f104";
+}
+.paginatorProduct .paginator a.paging-next:after{
+    content: "\f105";
+}
+.paginatorProduct .paginator a.paging-first, .paginatorProduct .paginator a.paging-previous, .paginatorProduct .paginator a.paging-last, .paginatorProduct .paginator a.paging-next{
+
+}
+.paginatorProduct .paginator a.labelPage{
+    display: none;
+}
+.paginatorProduct .paginator a.paging-last:after{
+    content: "\f101";
+}
+
+
+/****** DetailNews ******/
+.detailNews{
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+}
+.detailNews>div{
+    padding: 0 0 10px 0;
+    border-bottom: 1px dashed #CCC;
+    margin: 0 0 15px 0;
+}
+.detailNews>div>h1{
+    font-size: 30px;
+    font-weight: lighter;
+    color: #5d5d5d;
+    text-transform: uppercase;
+    padding: 5px 0 15px 0;
+    margin: 0 0;
+}
+.detailNews img{
+    max-width: 100%;
+    height: inherit !important;
+}
+.detailNews *{
+    max-width: 100%;
+}

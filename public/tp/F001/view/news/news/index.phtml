@@ -1,0 +1,53 @@
+<?php
+$paginator = $this->paginator;
+$this->headTitle($this->escapeHtml($this->translate('Danh sách tin tức')));
+$this->headMeta()->appendName('description', ('Danh sách tin tức'));
+$this->headMeta()->appendName('keywords', ('Danh sách tin tức'));
+$this->headMeta()->appendProperty('og:title', 'Danh sách tin tức');
+$cs = [
+    '/tp/F001/css/n.css'
+];
+echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            if(count($paginator)){
+                $n = $this->newsCategory()->getCategories();
+                if(count($n)){
+                    echo '<ul class="navNews">';
+                        echo '<li><a class="active" href="/news">Tất cả</a></li>';
+                        foreach($n as $b){
+                            echo '<li><a href="'.$b->getViewLink().'">'.$b->getName().'</a></li>';
+                        }
+                    echo '</ul>';
+                }
+                echo '<ul class="lN lNCategory">';
+                foreach($paginator as $n){
+                    $images = $this->home()->getImages(['id' => $n->getId(), 'type' => 1]);
+                    $img = '';
+                    if(count($images)){
+                        $c = 0;
+                        foreach($images as $i){
+                            $c++;
+                            if($c == 1){
+                                $img = '<img class="lazy" src="/tp/F00001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$n->getTitle().'" />';
+                            }
+                        }
+                    }
+                    echo '<li>
+                            <a href="'.$n->getViewLink().'">'.$img.'</a>
+                            <h2><a href="'.$n->getViewLink().'">'.$n->getTitle().'</a></h2>
+                        </li>';
+                }
+                echo '</ul>';
+                echo '<div class="paginatorProduct">';
+                    echo $this->paginationControl($this->paginator, 'Elastic', 'partial/listPage');
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </div>
+</div>

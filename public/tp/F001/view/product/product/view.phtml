@@ -1,0 +1,167 @@
+<?php
+    $product = $this->results;
+    $this->headTitle($this->escapeHtml($this->translate(html_entity_decode($product->getName()))));
+    $this->headMeta()->appendName('description', (html_entity_decode($product->getName())));
+    $this->headMeta()->appendName('keywords', (html_entity_decode($product->getName())));
+    $this->headMeta()->appendProperty('og:title', html_entity_decode($product->getName()));
+    $category = $this->category;
+    $images  = $this->images;
+
+    $prodCategory = $this->category();
+
+    $cs = [
+        '/js/cloudzoom/cloudzoom.css',
+        '/tp/F001/css/p.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+    $js = [
+        '/js/cloudzoom/cloudzoom.js',
+        '/js/jquery.carouFredSel-6.2.1-packed.js',
+        '/tp/F001/js/p.js'
+    ];
+    echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            if($category->getParentId()){
+                $cc = $prodCategory->getId($category);
+                if($cc->getParentId()){
+                    $ccc = $prodCategory->getId($cc);
+                    if($ccc->getParentId()){
+                        $cccc = $prodCategory->getId($ccc);
+                    }
+                }
+            }
+            ?>
+            <ul class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <?= (isset($cccc) ? '<li><a href="'.$cccc->getViewLink().'">'.$cccc->getName().'</a></li>':null) ?>
+                <?= (isset($ccc) ? '<li><a href="'.$ccc->getViewLink().'">'.$ccc->getName().'</a></li>':null) ?>
+                <?= (isset($cc) ? '<li><a href="'.$cc->getViewLink().'">'.$cc->getName().'</a></li>':null) ?>
+                <li><a href="<?= $category->getViewLink(); ?>"><?= $category->getName(); ?></a></li>
+            </ul>
+            <div class="detailProduct">
+                <?php
+                    if(count($images)){
+                        echo '<ul id="product" class="owl-carousel owl-theme">';
+                        foreach($images as $i){
+                            echo '<li><img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$results->getName().'" /></li>';
+                        }
+                        echo '</ul>';
+                    }
+                ?>
+                <div id="imgZoom">
+                    <?php
+//                        $images = $this->home()->getImages(['id' => $product->getId(), 'type' => 2]);
+                        $img = '';
+                        $imgs = [];
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = $i->getOption('media')->getPictureUri();
+                                }
+                                $imgs[] = $i->getOption('media')->getPictureUri();
+                            }
+                        }
+                    ?>
+                    <div id="zoomer">
+                        <img id="z" width="100%" class="cloudzoom" src="<?= $img ?>"
+                             data-cloudzoom="
+                         zoomImage: '<?= $img ?>',
+                         animationTime: 50,
+                         easeTime: 0,
+                         easing: 0,
+                         zoomFlyOut: false,
+                         zoomWidth: 300,
+                         zoomHeight: 300"/>
+                    </div>
+                    <div id="zoomSlide">
+                        <a href="#" id="prevSlideZ"></a>
+                        <a href="#" id="nextSlideZ"></a>
+                        <ul id="listImgZoom_2">
+                            <?php
+                            if (count($imgs)) {
+                                foreach ($imgs as $childImg) {
+                                    ?>
+                                    <li data-src="<?= $childImg ?>">
+                                        <img class='cloudzoom-gallery' src="<?= $childImg ?>" data-cloudzoom="useZoom: '.cloudzoom', image: '<?= $childImg ?>', zoomImage: '<?= $childImg ?>'">
+                                    </li>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!---- End imgZoom ---->
+
+
+                <div class="descriptionProduct">
+                    <h1><?= $product->getName() ?></h1>
+                    <p class="code">Mã sản phẩm: <?= $product->getCode() ?></p>
+                    <?php
+                        echo '<p class="price">'.($product->getPriceOld() ? '<span>'.number_format($product->getPriceOld()).'₫</span><i>'.number_format($product->getPrice()).'₫</i>':'<span>'.number_format($product->getPrice()).'₫</span>').'</p>';
+                    ?>
+                    <?php
+                        $attr = $this->home()->getAttr(['id' => $product->getId()]);
+                        if(count($attr)){
+                            echo '<p class="attr attrColor">';
+                                foreach($attr as $at){
+                                    if($at->getType() == 1){
+                                        echo '<a data-attr="'.$at->getProductAttrId().'" data-type="'.$at->getType().'" style="background-color: '.$at->getColorCode().'" title="'.$at->getName().'"></a>';
+                                    }
+                                }
+                            echo '</p>';
+                            echo '<p class="attr attrSize">';
+                                foreach($attr as $at){
+                                    if($at->getType() == 2){
+                                        echo '<a data-attr="'.$at->getProductAttrId().'" data-type="'.$at->getType().'">'.$at->getName().'</a>';
+                                    }
+                                }
+                                echo '<span><a href="">Hướng dẫn size</a></span>';
+                            echo '</p>';
+                        }
+                    ?>
+                    <p class="productQuantity">
+                        <i id="QttDown">-</i>
+                        <i id="Quantity" data-max="<?= $product->getQuantity(); ?>" data-value="1">1</i>
+                        <i id="QttUp">+</i>
+                    </p>
+                    <p class="lAddCard">
+                        <a class="btnAddCart" data-id="<?= $product->getId() ?>" data-color="" data-size="" data-quantity="1">Giỏ hàng</a>
+                        <a class="fav" data-id="<?= $product->getId() ?>"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                    </p>
+                    <div class="detailPayorder">
+                        <div class="description active">
+                            <label><i class="fa fa-caret-right"></i> Chi tiết sản phẩm</label>
+                            <div>
+                                <?= $product->getIntro() ? $product->getIntro():'<p>Chưa được cập nhật</p>' ?>
+                            </div>
+                        </div>
+                        <div class="payOrder">
+                            <label><i class="fa fa-caret-right"></i> Giao hàng và đổi trả hàng</label>
+                            <div>
+                                <ul>
+                                    <li>Đổi hàng trong vòng 72h</li>
+                                    <li>Giao hàng nội thành Hà Nội 20.000đ trong vòng 48h</li>
+                                    <li>Giao hàng ngoài Hà Nội trong vòng 72h – Tính phí</li>
+                                    <li>Thanh toán online hoặc thanh toán khi nhận hàng</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---- End descriptionProduct ---->
+            </div>
+            <!---- End detailProduct ---->
+
+        </div>
+    </div>
+</div>
+<input type="hidden" value="<?= $product->getViewLink() ?>" id="viewLink" />

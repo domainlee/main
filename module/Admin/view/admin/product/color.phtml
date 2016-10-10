@@ -1,0 +1,13 @@
+<?php
+echo $this->headtitle($this->translate('Danh sách màu sắc'));
+
+echo $dg = new \Admin\Dg\DgColor ( array (
+		'data' => $this->results->getData (),
+		'paging' => $this->results->getPaging (),
+		'rowCount' => $this->results->getRowCount (),
+		'rowInPage' => $this->results->getRowInPage (),
+));
+
+?>
+<div id="confdelete"></div>
+<div id="err"></div>

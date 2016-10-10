@@ -1,0 +1,25 @@
+<?php
+echo $this->headtitle($this->escapehtml($this->translate('Danh sách loại sản phẩm')));
+echo $this->headScript()->prependFile($this->basePath() . '/js/product/productc.js', 'text/javascript');
+
+
+echo $this->partial ( 'partial/form', array (
+		'form' => $this->fFilter
+) );
+echo $dg = new \Admin\Dg\DgProductc ( array (
+		'data' => $this->results->getData (),
+		'paging' => $this->results->getPaging (),
+		'rowCount' => $this->results->getRowCount (),
+		'rowInPage' => $this->results->getRowInPage (),
+));
+foreach ($this->abc as $item){
+	echo $item."<br>";
+}
+?>
+<div id="confdelete"></div>
+<div id="err"></div>
+<div id="uploadimg">
+<?php 
+echo $this->partial('partial/upload');
+?>
+</div>

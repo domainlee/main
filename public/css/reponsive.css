@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+@media screen and (max-width:980px){
+	.main-logo{
+		width: 96%;
+	}
+	.main-menu{
+		width: 96%;
+	}
+	.ct-left{
+		width: 30%;
+	}
+	#ct-pro{
+		width: 65%;
+	}
+}

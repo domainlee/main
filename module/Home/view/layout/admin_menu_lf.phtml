@@ -1,0 +1,50 @@
+<div class="page-sidebar nav-collapse collapse">
+    <ul class="page-sidebar-menu">
+        <li style="display: none">
+            <form class="sidebar-search">
+                <div class="input-box">
+                    <a href="javascript:;" class="remove"></a>
+                    <input type="text" placeholder="Search...">
+                    <input type="button" class="submit" value=" ">
+                </div>
+            </form>
+        </li>
+        <li class="start active">
+            <a href="/admin">
+                <i class="fa fa-home"></i>
+                <span class="title">Quản lý</span>
+                <span class="selected"></span>
+            </a>
+        </li>
+        <?php
+            $a = explode('/', $this->UriParams()->getRequest()->getRequestUri());
+            echo renderMenu($this->container, $a);
+        ?>
+    </ul>
+</div>
+<?php
+
+function renderMenu($container, $a) {
+    $helper = new \Zend\View\Helper\Navigation\Menu();
+    foreach ($container as $menu) {
+        if ($helper->accept($menu)){
+            $class = '';
+
+            if($a){
+                $attr = null;
+                if(in_array($menu->module, $a)){
+                    $class = 'open';
+                    $attr = 'display: block';
+                }
+            }
+            echo '<li class="'.$class.'" >';
+            echo '<a href="'.$menu->getHref().'">'.$menu->icon.'<span>'.$menu->label.'</span>'.($menu->pages ? '<span class="arrow"></span>':'' ).'</a>';
+            if (!empty($menu->pages)) {
+                echo '<ul class="sub-menu" style="'.$attr.'">';
+                echo renderMenu($menu->pages, null);
+                echo '</ul>';
+            }
+            echo '</li>';
+        }
+    }
+}

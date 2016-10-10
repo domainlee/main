@@ -1,0 +1,469 @@
+@CHARSET "ISO-8859-1";
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: Helvetica, Calibri, Candara, Arial, sans-serif;
+	font-size: 13px;
+}
+/*
+	menu left;
+*/
+
+#menu-lf{
+	width: 200px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-top: -5px;
+	float: left;
+}
+#li-txt-search{
+	padding-top:20px;
+	text-align: center;
+}
+#txt-search-menu{
+	width: 172px;
+	border-radius: 4px;
+	margin:7px 0;
+	font-size: 13px;
+}
+#textSearch{
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	margin: 0;
+}
+#menu-lf .list>li{
+	border-bottom: 1px solid #ccc;
+	color: #D1392C;
+	
+}
+#menu-lf .list>li>ul{
+	margin-left: 10px;
+}
+#menu-lf li{
+	padding: 7px 5px;
+	font-size: 12px;
+	font-weight:bold;
+	list-style: none;
+}
+#menu-lf a{
+	color: #333;
+}
+#menu-lf a:HOVER{
+	color: #E44203;
+}
+#menu-lf .list>li>a{
+	color: #D1392C;
+}
+form{
+	margin-bottom: 6px;
+}
+.name3{
+	display: none;
+}
+.list span{
+	font-size: 14px;
+	margin-right: 5px;
+	color: #4C3C3C;
+}
+.navbar .brand{
+	margin-left: -30px;
+}
+/*
+	end menu left;
+*/
+
+.navbar .nav.pull-right{
+	font-size: 13px;
+}
+.mar-lf{
+	margin-left: 200px;
+}
+
+/* header */
+#a-header{
+	width: 100%;
+}
+.navbar .nav {
+	margin-top: 1px;
+}
+.description{
+	margin-left: 142px;
+}
+#a-pro-add li .errors li{
+	margin:6px 0 -10px 142px;
+	color: red;
+	list-style: none;
+}
+#a-pro-add{
+	width:99%;
+	border: 1px solid #ccc;
+	margin: 30px auto;
+}
+#a-pro-add li{
+	list-style: none;
+}
+#a-pro-add h4{
+	background: #fff;
+	margin:-10px 0 0 10px;
+	position: absolute;
+	font-size: 17px;
+	font-weight: bold;
+	padding-right: 3px;
+}
+.f{
+	padding:20px 0 0 20px;
+}
+.f ul span{
+	color: #c00;
+}
+.f ul li{
+	margin-top: 15px;
+}
+.f ul li label{
+	min-width: 134px;
+}
+.fs ul li label{
+	min-width: 120px;
+}
+#btnSubmit{
+	margin-top: 10px;	
+}
+#btnReset{
+	margin: -82px 0 0 63px;
+}
+.fFilter ul li{
+	list-style: none;
+	padding: 5px 0 5px 10px;
+	display: inline-block;
+}
+.fFilter {
+	width:99.2%;
+	margin: 39px 0 0 0;
+	border-bottom: 1px solid #ccc;
+}
+.fFilter .wt{
+	width: 134px;
+}
+
+
+.table{
+	font-size: 12px;
+	margin-top: 35px;
+}
+table thead{
+	background: url("../images/bgTableHd.png");
+	background-size:100% 100%;
+	font-size: 12px;
+}
+.table thead th{
+	text-align: center;
+}
+.dg-container{
+	width: 98.6%;
+	margin: auto;
+}
+.dg-container .image .img{
+	width: 70px;
+	height: 50px;
+	border: none;
+}
+.dg-container .image{
+	width: 6.1%;
+}
+.paginator{
+	text-align: right;
+}
+.paginator span{
+	padding-right: 10px;
+}
+.icon-green{
+	color: green;
+}
+.icon-red{
+	color: red;
+}
+.icon-black{
+	color: black;
+}
+.table .date{
+	text-align: center;
+	vertical-align: middle;
+	
+}
+.table .image{
+	text-align: center;
+	width: 5%;
+	vertical-align: middle;
+	
+}
+.fa-picture-o{
+	font-size: 17px;
+}
+.table .clAct{
+	text-align: center;
+	width: 5%;
+	vertical-align: middle;
+}
+.clAct a{
+	color: #000;
+	
+}
+.table .id{
+	width: 4%;
+	text-align: center;
+	vertical-align: middle;
+}
+tr th{
+	text-align: center;
+}
+.table thead th{
+	vertical-align: middle;
+}
+.table .quantity,
+.table .cusName,
+.table .description{
+	text-align: center;
+	vertical-align: middle;
+}
+/* end header*/
+
+/* content */
+#cke_textarea_full{
+	margin: -2% 0 0 142px;
+	width: 70%;
+	background: #6FA7D2;
+}
+
+#title{
+	width: 645px;
+}
+
+/* end content*/
+
+/* start form signin*/
+#main-sg{
+	text-align: center;
+	margin-top: 40px;
+}
+#main-sg h3{
+	color: #5090c1;
+	font-size: 24px;
+}
+#signin{
+	background: #f7f7f7;
+	text-align: center;
+	width: 30%;
+	margin: 10px auto;
+	border: 1px solid #597597;
+	border-bottom: 0;
+}
+#signin .btns{
+	padding-bottom: 10px;
+}
+.login-container-footer{
+	width: 27.3%;
+	margin: -18px auto;
+}
+#signin ul li{
+	list-style: none;
+	margin-left: -20px;
+}
+#signin ul li .text{
+	background-color: #FAFFBD;
+}
+#signin .errors li{
+	text-align: left;
+	padding-left: 157px;
+	color: red;
+	margin: 5px 0 -10px 0;
+}
+#signin ul li label{
+	text-align: left;
+}
+
+#btnResets {
+margin: -82px 0 0 83px;
+}
+.fa-android{
+	padding-right: 10px;
+}
+/*end signin*/
+/*Errors*/
+#error{
+	text-align: center;
+}
+#error p{
+	color: red;
+}
+#error .fa {
+	padding-right: 5px;
+}
+#error a{
+	color: green;
+}
+#error a:HOVER {
+	text-decoration: underline;
+}
+/*end error*/
+/* slide left*/
+
+#slide-left{
+	width: 200px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius:4px;
+	margin-top: 12%;
+	z-index: 10;
+	position: absolute;
+	opacity:0.1;
+	
+}
+#slide-left a{
+	color: #000;
+}
+#slide-left ul li{
+	list-style: none;
+	line-height: 34px;
+}
+#slide-left a:HOVER{
+	color: green;
+	font-weight: bold;
+}
+/*end slide left*/
+/* menu ct2*/
+
+#menu-txt{
+	width: 150px;
+	height: 17px;
+	border-radius:2px;
+	margin: 10px 0;
+}
+#menu-ct2{
+	width: 177px;
+	height:100%;
+	border-left:1px solid #ccc;
+	position: fixed;
+	right: 0;
+	background: lavender;
+	display: none;
+}
+#menu-ct2 a{
+	color: #333;
+}
+#menu-ct2 a:HOVER{
+	color: red;
+}
+.menu-ct2-ul{
+	width: 92%;
+	margin: auto;
+}
+#menu-ct2 ul li{
+	list-style: none;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 25px;
+}
+#menu-ct2 .menu-ct2-ul>li{
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+	line-height: 33px;
+	
+	
+}
+#menu-ct2 .menu-ct2-ul>li>a{
+	color: #A86500;
+}
+
+/* end menu ct2*/
+/*
+	profile
+*/
+#profile{
+	width: 80%;
+	margin: 50px auto;
+	overflow: hidden;
+}
+#profile-img{
+	width: 23%;
+	float:left;
+}
+#profile-img img{
+	width: 200px;
+	height: 197px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	
+}
+#profile-info{
+	width: 74%;
+	float: right;
+	margin-left: 3%;
+}
+#profile-info .table{
+	margin-top: 0;
+}
+.table tr td{
+	padding: 10px 5px;
+	font-size: 12px;
+	font-family: arial
+}
+#profile-td-bg{
+	background: #FCFAFA;
+	color: #336199
+}
+	
+
+/*
+	end profie
+*/
+/* dialog */
+.ui-dialog{
+	border: 1px solid #ccc !important;
+}
+.ui-dialog-title{
+	color: #fff;
+	font-size: 12px;
+}
+.ui-dialog-titlebar-close{
+	display: none;
+}
+#confdelete b{
+	font-size: 12px; 
+}
+#err b{
+	font-size: 12px; 
+}
+#uploadimg{
+	display: none;
+}
+/* end dialog*/
+
+#seop{
+	text-align: center;
+}
+
+#fa-pd{
+	padding-right: 5px;
+}
+#confdelete{
+	display: none;
+}
+.cl1 a,
+.cl2 a{
+	text-decoration: underline;
+	color: #3C3CE7
+}
+
+
+
+
+
+
+
+
+
+
+
+

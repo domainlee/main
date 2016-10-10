@@ -1,0 +1,8 @@
+<?php
+    $f = $this->results->getData();
+    if(isset($f)){
+        foreach($f as $ff){
+            echo '<li data-id="'.$ff->getId().'"><img src="'.$ff->getPictureUri().'" alt=""/></li>';
+        }
+    }
+?>

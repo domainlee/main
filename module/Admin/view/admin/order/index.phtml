@@ -1,0 +1,26 @@
+<?php
+echo $this->headtitle($this->escapehtml($this->translate('Danh sách hóa đơn')));
+echo $this->headscript()->prependFile($this->basepath().'/js/order/order.js');
+
+// echo $this->partial ( 'partial/form', array (
+// 		'form' => $this->fFilter
+// ) );
+echo $dg = new \Admin\Dg\DgOrder( array (
+		'data' => $this->results->getData (),
+		'paging' => $this->results->getPaging (),
+		'rowCount' => $this->results->getRowCount (),
+		'rowInPage' => $this->results->getRowInPage (),
+));
+$model = new \Admin\Model\Order();
+$status = $model->getStatuses();
+?>
+
+<div id="confdelete">
+	<select style="text-align: center;" id="selectSta">
+		<option>- Trạng thái -</option>
+		<?php foreach ($status as $key=>$value){?>
+		<option value="<?= $key?>"><?= $value ?></option>
+		<?php }?>
+	</select>
+</div>
+<div id="err"></div>

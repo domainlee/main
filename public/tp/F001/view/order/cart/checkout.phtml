@@ -1,0 +1,84 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Đặt hàng')));
+    $this->headMeta()->appendName('description', ('Đặt hàng'));
+    $this->headMeta()->appendName('keywords', ('Đặt hàng'));
+    $this->headMeta()->appendProperty('og:title', 'Đặt hàng');
+
+    $cartService = $this->cart()->getServiceCart();
+    $products = $cartService->getProducts();
+    $cs = [
+        '/tp/F001/css/p.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+    $js = [
+        '/tp/F001/js/c.js'
+    ];
+    echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="checkout">
+            <div class="col-md-12">
+                <h1 class="titleHome"><span>Đặt hàng</span></h1>
+            </div>
+            <form method="post">
+                <div class="col-md-6">
+                    <p><span>Sản phẩm</span></p>
+                    <?php
+                        $products = $cartService->getProducts();
+                        $d = 0;
+                        if(count($products)){
+                            echo '<ul>';
+                            foreach($products as $p){
+                                $t = ($p->getPriceOld() ? $p->getPriceOld():$p->getPrice())*$p->getQuantity();
+                                echo '<li>
+                                    <a href="../'.$p->getViewLink() .'">'.$p->getName() . (isset($p->getOptions()['dataSize']) ? ' - <span>'.$p->getOptions()['dataSize']->getName().'</span>':'').(isset($p->getOptions()['dataColor']) ? '<span class="colorAttr" style="background-color:'.$p->getOptions()['dataColor']->getColorCode().'">'.$p->getOptions()['dataColor']->getName().'</span>':'').'</a>
+                                    <p>'.number_format($p->getPriceOld() ? $p->getPriceOld():$p->getPrice()).'đ</p>
+                                    <p>Số lượng: <span>'.$p->getQuantity().'</span></p>
+                                </li>';
+                                $d += $t;
+                            }
+                            echo '</ul>';
+                            echo '<span>Tổng tiền: <strong>'.number_format($d).'đ</strong></span>';
+                        }
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?php
+                        $name = '';
+                        $phone = '';
+                        $email = '';
+                        if($this->user()->hasIdentity()){
+                            $name = $this->user()->getUser()->getFullName() ? $this->user()->getUser()->getFullName():ucfirst($this->user()->getUser()->getUserName());
+                            $phone = $this->user()->getUser()->getMobile();
+                            $email = $this->user()->getUser()->getEmail();
+                        }
+                        $error = $this->error;
+                        print_r($error);
+                    ?>
+                    <p><span>Khách hàng</span></p>
+                    <div>
+                        <label>Họ và tên: *</label>
+                        <input type="text" maxlength="50" name="fullName" placeholder="Họ tên" required <?= (isset($name) ? 'value="'.$name.'"':null) ?> />
+                    </div>
+                    <div>
+                        <label>Số điện thoại: *</label>
+                        <input type="text" pattern="\d+" minlength="10" maxlength="12" name="phone" placeholder="Số điện thoại" required <?= (isset($phone) ? 'value="'.$phone.'"':null) ?> />
+                    </div>
+                    <div>
+                        <label>Email: *</label>
+                        <input type="email" name="email" placeholder="Email" required <?= (isset($email) ? 'value="'.$email.'"':null) ?>/>
+                    </div>
+                    <div>
+                        <label>Địa chỉ:</label>
+                        <textarea name="content" placeholder="Địa chỉ"></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" value="Đặt hàng" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<?php
+    $c = $this->category;
+    $this->headTitle($this->escapeHtml($this->translate($c->getName())));
+    $this->headMeta()->appendName('description', ($c->getDescription() ? : $c->getDescription()));
+    $this->headMeta()->appendName('keywords', ($c->getName() ? : $c->getName()));
+    $this->headMeta()->appendProperty('og:title', $c->getName());
+?>
+<div class="wrapper">
+    <div class="header">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="logo">
+                    <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="sologan">
+                    <p>
+                        Hello. We are a multi-disciplinary team working together to craft awesome websites, realise brand identities, design for print and capture visual imagery through photography. Take a look at some of our work below.
+                    </p>
+                    <div class="more">
+                        <p>
+                            PFD is a design studio based in Norfolk, UK. We have been in business since 2006 and have been fortunate enough to work with some lovely clients on some fantastic projects. Our work spans a broad range of industries and we have experience working with companies of varying size. Each member of our compact team has their own specialist knowledge and collectively we are able to offer a range of complementary design solutions tailored to each clients' requirements.
+                        </p>
+                        <p>
+                            Our website provides a little background on who we are and what we have worked on in the past. If you think you might be interested in working with us, why not get in touch? You can either give us a ring on +44 (0)1553 630430 or drop us an email at hello@madebypfd.com.
+                        </p>
+                    </div>
+                    <a id="readmore">Đọc tiếp +</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="blog">
+                    <?php
+                    if(count($this->paginator)){
+                        ?>
+                        <ul>
+                            <?php
+                            foreach($this->paginator as $n){
+                                $like = $this->home()->getLike(['id' => $n->getId(), 'type' => 1]);
+                                ?>
+                                <li>
+                                    <a href="<?= $n->getViewLink() ?>">
+                                        <img src="<?= $n->getPictureUri() ?>" alt="<?= $n->getTitle() ?>" />
+                                    </a>
+                                    <div>
+                                        <span><?= date('d/m/Y', strtotime($n->getCreatedDateTime())) ; ?></span>
+                                        <h2><a href="<?= $n->getViewLink() ?>"><?= $n->getTitle() ?></a></h2>
+                                    </div>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                            <div class="clear"></div>
+                        </ul>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                        echo $this->paginationControl($this->paginator, 'Elastic', 'partial/listPage');
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------End main ---------->

@@ -1,0 +1,5 @@
+#RewriteEngine On
+#RewriteCond %{HTTP_HOST} ^localhost/mainweb [OR]
+#RewriteCond %{HTTP_HOST} ^www.localhost/mainweb$
+#RewriteCond %{REQUEST_URI} !^/mainweb/public/
+#RewriteRule (.*) /mainweb/public/$1

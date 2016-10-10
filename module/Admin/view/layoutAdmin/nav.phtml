@@ -1,0 +1,22 @@
+<ul class="nav">
+    <?=  renderMenu($this->container) ?>
+</ul>
+<?php
+function renderMenu($container) {
+    $helper = new \Zend\View\Helper\Navigation\Menu();
+    foreach ($container as $menu) {
+        if ($helper->accept($menu)){
+            if (!empty($menu->pages)) {
+                echo '<li class="dropdown">';
+                echo '<a class="dropdown-toggle" data-toggle="dropdown" href="'.$menu->getHref().'">'.$menu->label.' <i class="fa fa-caret-down"></i></a>';
+                echo '<ul class="dropdown-menu">';
+               	echo renderMenu($menu->pages);
+                echo '</ul>';
+            } else {
+                echo '<li>';
+                echo '<a href="'.$menu->getHref().'">'.$menu->label.'</a>';
+                echo '</li>';
+            }
+        }
+    }
+}

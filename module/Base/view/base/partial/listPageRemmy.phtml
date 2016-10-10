@@ -1,0 +1,35 @@
+<?php
+if ($this->pageCount) {
+    echo '<div class="paginator">';
+
+    if ($this->pageCount > 1) {
+        $params = $this->uriParams()->getQueryParams();
+        if (isset($this->previous)) {
+            $params['page'] = $this->previous;
+            echo '<a class="paging-previous ico" title="' . $this->translate('Quay lại') . '"
+               href="' . $this->uriParams()->build($params) . '">Prev</a>';
+        }else{
+            $params['page'] = $this->previous;
+            echo '<a class="disable paging-previous ico" title="' . $this->translate('Quay lại') . '"
+               >Prev</a>';
+        }
+
+        /*Numbered page links*/
+        foreach ($this->pagesInRange as $page) {
+            if ($page == $this->current) {
+                echo '<a class="currentPage">'.$page.' of '.$this->pageCount.'</a>';
+            }
+        }
+
+        if (isset($this->next)) {
+            $params['page'] = $this->next;
+            echo '<a class="paging-next ico" title="' . $this->translate('Trang sau') . '"
+               href="' . $this->uriParams()->build($params) . '">Next</a>';
+        }else{
+            echo '<a class="disable paging-next ico" title="' . $this->translate('Trang sau') . '"
+               >Next</a>';
+        }
+    }
+
+    echo '</div>';
+}

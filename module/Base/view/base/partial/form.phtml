@@ -1,0 +1,78 @@
+<?php
+/* @var $form Zend\Form\Form */
+if(!($form = $this->form)) {
+	return;
+}
+$form->prepare();
+echo $this->form()->openTag($form);
+
+$decoratorWraper = $form->getOption('decorator') ?: array();
+$decoratorWraperOpen = "";
+$decoratorWraperClose = "";
+$decoratorWraperAttrString = "";
+if(isset($decoratorWraper['attributes'])) {
+	$decoratorWraperAttrString = $this->form()->createAttributesString($decoratorWraper['attributes']);
+}
+if(isset($decoratorWraper['type'])) {
+	switch ($decoratorWraper['type']) {
+		case "ul":
+			$decoratorWraperOpen = sprintf("<ul %s>", $decoratorWraperAttrString);
+			$decoratorWraperClose = "</ul>";
+			break;
+	}
+}
+
+echo $decoratorWraperOpen ?: '';
+
+foreach ($form as $element) {
+	/* @var $element Zend\Form\Element */
+	$decorator = $element->getOption('decorator');
+	$description = $element->getOption('description');
+
+	$decoratorAttrString = "";
+	if(isset($decorator['attributes']) && is_array($decorator['attributes'])) {
+		$decoratorAttrString = $this->form()->createAttributesString($decorator['attributes']);
+	}
+
+	if(isset($decorator['type'])) {
+		switch ($decorator['type']) {
+			case "li":
+				echo sprintf("<li %s>", $decoratorAttrString);
+				if($element->getLabel()) {
+					$labelSpan = "";
+					$labelAttributes = array("for" => $element->getName());
+					/* @var $inputFilter Zend\InputFilter\Input */
+					if(!!$inputFilter = $form->getInputFilter()->get($element->getName())) {
+						if($inputFilter->isRequired()) {
+							$labelAttributes["class"] = "required";
+							$labelSpan = "<span>*</span> ";
+						}
+					}
+					$element->setLabelAttributes($labelAttributes);
+					if($labelSpan) {
+						echo $this->formLabel($element, $labelSpan, 'append');
+					} else {
+						echo $this->formLabel($element);
+					}
+				}
+
+				echo $this->formElement($element);
+				if($description){
+					echo "<p class='description'><small>$description</small></p>";
+				}
+				if(count($element->getMessages())) {
+					echo $this->formElementErrors($element, array('class' => 'errors'));
+				}
+				echo "</li>";
+				break;
+			default:
+				echo $this->formRow($element);
+				break;
+		} // end switch
+	} else {
+		echo $this->formRow($element);
+	}
+}
+echo $decoratorWraperClose ?: '';
+
+echo $this->form()->closeTag($form);

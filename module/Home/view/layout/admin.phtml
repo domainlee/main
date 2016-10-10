@@ -1,0 +1,90 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?php
+    echo $this->headLink()->prependStylesheet('/css/admin/layout/style.css')
+        ->prependStylesheet('/css/admin/layout/datepicker.css')
+        ->prependStylesheet('/js/admin/layout/summernote.css')
+        ->prependStylesheet('/css/admin/layout/jquery.tagsinput.css')
+        ->prependStylesheet('/css/admin/layout/bootstrap-modal.css')
+        ->prependStylesheet('/css/admin/layout/colorpicker.css')
+        ->prependStylesheet('/css/admin/layout/default.css')
+        ->prependStylesheet('/css/admin/layout/error.css')
+        ->prependStylesheet('/css/admin/layout/font-awesome.css')
+        ->prependStylesheet('/css/admin/layout/bootstrap-responsive.min.css')
+        ->prependStylesheet('/css/admin/layout/style-responsive.css')
+        ->prependStylesheet('/css/admin/layout/style-metro.css')
+        ->prependStylesheet('/css/admin/layout/DT_bootstrap.css')
+        ->prependStylesheet('/css/admin/layout/chosen.css')
+        ->prependStylesheet('/css/admin/layout/jquery.nestable.css')
+
+        ->prependStylesheet('/css/admin/layout/bootstrap-editable.css')
+        ->prependStylesheet('/css/admin/layout/bootstrap-switch.css')
+        ->prependStylesheet('/css/admin/layout/bootstrap-wysihtml5.css')
+        ->prependStylesheet('/css/admin/layout/bootstrap.min.css');
+
+    echo $this->headScript()
+        ->prependFile('/js/admin/product/import.js')
+        ->prependFile('/js/admin/excel/ods.js')
+        ->prependFile('/js/admin/excel/xlsx.js')
+        ->prependFile('/js/admin/excel/jszip.js')
+        ->prependFile('/js/admin/excel/shim.js')
+
+        ->prependFile('/js/admin/layout/summernote.js')
+        ->prependFile('/js/admin/article/a.js')
+        ->prependFile('/js/admin/layout/form-components.js')
+        ->prependFile('/js/admin/layout/app.js')
+        ->prependFile('/js/admin/layout/ui-modals.js')
+        ->prependFile('/js/admin/layout/jquery.nestable.js')
+        ->prependFile('/js/admin/layout/ui-nestable.js')
+//
+        ->prependFile('/js/admin/layout/jquery.tagsinput.min.js')
+        ->prependFile('/js/admin/layout/bootstrap-modalmanager.js')
+        ->prependFile('/js/admin/layout/bootstrap-modal.js')
+        ->prependFile('/js/admin/layout/bootstrap-wysihtml5.js')
+        ->prependFile('/js/admin/layout/bootstrap-datepicker.js')
+        ->prependFile('/js/admin/layout/autoNumeric-min.js')
+        ->prependFile('/js/admin/layout/chosen.jquery.min.js')
+        ->prependFile('/js/admin/layout/bootstrap-colorpicker.js')
+        ->prependFile('/js/admin/layout/wysihtml5-0.3.0.js')
+        ->prependFile('/js/admin/layout/bootstrap-editable.min.js')
+        ->prependFile('/js/admin/layout/bootstrap.min.js')
+        ->prependFile('/js/admin/layout/jquery-ui.min.js')
+        ->prependFile('/js/admin/layout/jquery-migrate-1.2.1.min.js')
+        ->prependFile('/js/admin/layout/jquery-1.10.1.min.js');
+    ?>
+
+</head>
+
+<body class="page-header-fixed">
+<?= $this->render("layout/admin_head") ?>
+<div class="page-container">
+    <?= $this->render("layout/admin_nav") ?>
+    <div class="page-content">
+        <div id="main-content" class="mar-lf">
+            <?php echo $this->content; ?>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-inner">
+            Author by Mienlv
+        </div>
+        <div class="footer-tools">
+			<span class="go-top">
+			<i class="icon-angle-up"></i>
+			</span>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        App.init();
+        FormComponents.init();
+        UIModals.init();
+//        UINestable.init();
+//        FormEditable.init();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<?php echo $this->headscript()->prependFile($this->basepath().'/js/jscolor/jscolor.js');?>
+<div id="a-pro-add">
+	<?php
+		echo "<h4>". $this->translate("Thêm màu sắc") ."</h4>";
+		echo $this->partial('partial/form',array('form'=>$this->form));
+		
+	?>
+</div>

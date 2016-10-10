@@ -1,0 +1,93 @@
+<?php
+$view = $this->news;
+$this->headTitle($this->escapeHtml($this->translate($view->getTitle())));
+$this->headMeta()->appendName('description', ($view->getTitle() ? : $view->getTitle()));
+$this->headMeta()->appendName('keywords', ($view->getTitle() ? : $view->getTitle()));
+$this->headMeta()->appendProperty('og:title', $view->getTitle());
+?>
+<div class="wrapper">
+    <div class="detail detailBlog">
+        <div class="left">
+            <div>
+                <div class="logo">
+                    <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web" /></a>
+                </div>
+                <div class="contentBlog">
+                    <h1><?= $view->getTitle() ?></h1>
+                    <span><?= 'Ngày đăng: '. date('d/m/Y', strtotime($view->getCreatedDateTime())) ; ?></span>
+                    <div>
+                        <?php
+                        echo $view->getContent();
+                        $a = json_decode($view->getExtraContent());
+                        ?>
+                        <div class="service">
+                            <h2>Dịch vụ</h2>
+                            <p><?= $view->getExtraContent() ? $a->serivce : '' ?></p>
+                        </div>
+                        <div class="toReviewSite">
+                            <a href="<?= $view->getExtraContent() ? $a->link : '' ?>" target="_blank">Đến Website</a>
+                        </div>
+                        <div class="toolView">
+                            <a class="backHome" href="http://dweb.vn"></a>
+                            <?php
+                            $like = $this->home()->getLike(['id' => $view->getId(), 'type' => 1]);
+                            if(isset($_COOKIE[$view->getId()])) {
+                                echo  '<a class="like isLike" title="Đã like"><span>'.$like.'</span></a>';
+                            }else{
+                                echo  '<a id="like" class="like" data-id="'.$view->getId().'" data-type="'.$view->getViewLink().'"><span>'.$like.'</span></a>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="profilo ProfileViewBlog">
+                <?php
+                $new = $this->news()->searchArticle(['type' => 1]);
+                if(count($new)){
+                    ?>
+                    <ul>
+                        <?php
+                        foreach($new as $n){
+                            $like = $this->home()->getLike(['id' => $n->getId(), 'type' => 1]);
+                            $images = $this->home()->getImages(['id' => $n->getId(), 'type' => 1]);
+
+                            ?>
+                            <li>
+                                <a href="<?= $n->getViewLink() ?>">
+                                    <?php
+                                        if(count($images)){
+                                            $c = 0;
+                                            foreach($images as $i){
+                                                $c++;
+                                                if($c == 1){
+                                                    echo '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$n->getTitle().'" />';
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                    <div class="overlay">
+                                        <summary>
+                                            <h2><?= $n->getTitle() ?></h2>
+                                            <h3>Identity, Website &amp; Photography</h3>
+                                        </summary>
+                                        <div class="loves"><span><?= $like ?></span></div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                        <div class="clear"></div>
+                    </ul>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+

@@ -1,0 +1,81 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Giỏ hàng')));
+    $this->headMeta()->appendName('description', ('Giỏ hàng của bạn'));
+    $this->headMeta()->appendName('keywords', ('Giỏ hàng'));
+    $this->headMeta()->appendProperty('og:title', 'Giỏ hàng');
+?>
+<?php
+    $cartService = $this->cart()->getServiceCart();
+    $products = $cartService->getProducts();
+    $cs = [
+        '/tp/F001/css/p.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+    $js = [
+        '/tp/F001/js/c.js'
+    ];
+    echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="cart">
+                <h1 class="titleHome"><span><?= (count($products) ? 'Giỏ hàng':'Giỏ hàng trống') ?></span></h1>
+                <?php
+                    if(count($products)){
+                ?>
+                <table style="width: 100%">
+                    <tr>
+                        <th style="width: 3%;text-align:center">STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th style="width: 10%;text-align:right">Giá</th>
+                        <th style="width: 8%;text-align:center">Số lượng</th>
+                        <th style="width: 10%;text-align:right">Thành tiền</th>
+                        <th></th>
+                    </tr>
+                    <?php
+                        $c = 0;
+                        $d = 0;
+                        foreach($products as $p){
+                        $c++;
+                        $t = ($p->getPriceOld() ? $p->getPriceOld():$p->getPrice())*$p->getQuantity();
+                    ?>
+                    <tr>
+                        <td style="text-align:center"><?= $c ?></td>
+                        <td><a href="<?= $p->getViewLink() ?>"><?= $p->getName() . (isset($p->getOptions()['dataSize']) ? ' - <span>'.$p->getOptions()['dataSize']->getName().'</span>':'').(isset($p->getOptions()['dataColor']) ? '<span class="colorAttr" style="background-color:'.$p->getOptions()['dataColor']->getColorCode().'">'.$p->getOptions()['dataColor']->getName().'</span>':'') ?></a></td>
+                        <td style="text-align:right"><?= number_format($p->getPriceOld() ? $p->getPriceOld():$p->getPrice()).'đ'; ?></td>
+                        <td style="text-align:center">
+                            <?php
+                                if($p->getOptions()['quantity']){
+                                    echo '<select class="changeQuantity" data-id="'.$p->getId().'" data-color="'.(isset($p->getOptions()['dataColor']) ? $p->getOptions()['dataColor']->getId():'').'" data-size="'.(isset($p->getOptions()['dataSize']) ? $p->getOptions()['dataSize']->getId():'').'">';
+                                    for($a = 1; $a <= $p->getOptions()['quantity'];$a++){
+                                        if($a == $p->getQuantity()){
+                                            echo '<option value="'.$a.'" selected="">'.$a.'</option>';
+                                        }else{
+                                            echo '<option value="'.$a.'">'.$a.'</option>';
+                                        }
+                                    }
+                                    echo '</select>';
+                                }
+                            ?>
+                        </td>
+                        <td style="text-align:right"><?= number_format(($p->getPriceOld() ? $p->getPriceOld():$p->getPrice())*$p->getQuantity()).'đ'; ?></td>
+                        <td style="text-align: center;width: 5%"><?= '<a class="deleteCart fa fa-trash-o" data-id="'.$p->getId().'" data-color="'.(isset($p->getOptions()['dataColor']) ? $p->getOptions()['dataColor']->getId():'').'" data-size="'.(isset($p->getOptions()['dataSize']) ? $p->getOptions()['dataSize']->getId():'').'"></a>' ?></td>
+                    </tr>
+                    <?php
+                        $d += $t;
+                        }
+                    ?>
+                    <tr>
+                        <td colspan="2">Tổng tiền</td>
+                        <td style="text-align: center;font-weight: 700;" colspan="4"><?= number_format($d).'đ' ?></td>
+                    </tr>
+                </table>
+                <div class="backhomeCheckout"><a href="cart/checkout">Đặt hàng</a><a href="/">Quay lại trang chủ</a></div>
+                <?php
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>

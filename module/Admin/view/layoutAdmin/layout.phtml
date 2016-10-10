@@ -1,0 +1,37 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	 <?php
+  	 	echo $this->headLink()->prependStylesheet($this->basePath() . '/css/admin.css')
+  	 						  ->prependStylesheet($this->basePath() . '/css/bootstrap.cosmo.css')
+  	 						  ->prependStylesheet($this->basePath() . '/css/font-awesome.min.css');
+  	 							
+		echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+								->prependFile($this->basePath() . '/js/bootstrap.min.js')
+								->prependFile($this->basePath() . '/js/jquery-ui.min.js')
+							//	->prependFile($this->basePath() . '/js/ckeditor/config.js')
+								->prependFile($this->basePath() . '/js/ckeditor/samples/sample.js')
+								->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js')
+								->prependFile($this->basePath() . '/js/1.10.2.min.js');
+	?>
+  </head>
+
+  <body>
+    <?= $this->render('layoutAdmin/header') ?>
+  	<div id="a-wrapper">
+	    <div id="a-main-content">
+	      <?php echo $this->content; ?>
+	    </div>
+    </div>
+    <?= $this->render('layoutAdmin/footer')?>
+  </body>
+</html>
+
+
+
+
+
+
+
+

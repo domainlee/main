@@ -1,0 +1,15 @@
+<?php
+echo $this->headtitle($this->escapehtml($this->translate('Danh sách người dùng')));
+//echo $this->headScript()->prependFile($this->basePath() . '/js/product/accountuserIndex.js', 'text/javascript');
+
+
+echo $this->partial ( 'partial/form', array (
+		'form' => $this->fFilter
+) );
+echo $dg = new \User\Dg\DgUser ( array (
+		'data' => $this->results->getData (),
+		'paging' => $this->results->getPaging (),
+		'rowCount' => $this->results->getRowCount (),
+		'rowInPage' => $this->results->getRowInPage (),
+));
+?>

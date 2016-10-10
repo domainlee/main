@@ -1,0 +1,587 @@
+/******** Category ***********/
+#product{
+    display: none;
+}
+img{
+    max-width: 100%;
+}
+.breadcrumb{
+    padding: 8px 0;
+    background: none;
+    margin: 5px 0;
+}
+.breadcrumb li a{
+    color: #999;
+}
+.productCategory{
+    display: inline-block;
+    width: 100%;
+    margin: 15px 0 0 0;
+}
+.box{
+    margin: 0 0 10px 0;
+}
+.box h1{
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid #333;
+    padding: 0 0 10px 0;
+    margin: 0 0;
+    position: relative;
+}
+.box h1 a{
+    position: absolute;
+    font-weight: 400;
+    font-size: 11px;
+    top: 7px;
+    color: #333;
+    font-family: Arial;
+    right: 1px;
+}
+.box ul{
+    margin: 15px 0;
+}
+.box ul li{
+    margin: 8px 0;
+}
+.box ul li a{
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+.box ul li a i{
+    margin: 0 5px 0 0;
+}
+.box ul.color li{
+    display: inline-block;
+}
+.box ul.color li a{
+    display: inline-block;
+    width: 30px;
+    height: 23px;
+    margin: 0 5px 0 0;
+    border: 1px solid #FFF;
+    box-shadow: 0 0 0 1px #999;
+    text-align: center;
+    line-height: 20px;
+}
+ul.color li a.active{
+    box-shadow: 0 0 0 1px #FF7A00;
+}
+.productCategory .left{
+    width: 240px;
+    float: left;
+}
+.productCategory .right{
+    float: right;
+    width: 775px;
+}
+.productCategory .right>h1{
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #333;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 0 0 10px 0;
+    position: relative;
+}
+.productCategory .right>h1>select{
+    position: absolute;
+    right: 13px;
+    border-radius: 0;
+    border: 1px solid #333;
+    top: 1px;
+    padding: 2px 10px;
+    font-size: 13px;
+}
+.productCategory .right>h1>select:focus{
+    outline: none;
+}
+.productCategory .right ul.lP{
+    margin: 10px 0;
+}
+.productCategory .right ul.lP li{
+    margin: 0 15.5px 15px 0;
+}
+.productCategory .right ul.lP li:nth-child(3n+0){
+    margin: 0 0 15px 0;
+}
+.productCategory .right ul.lP li:nth-child(4n+0) {
+    margin: 0 15.5px 15px 0;
+}
+.productCategory .right ul.lP li:nth-child(12n+0){
+    margin: 0 0 15px 0;
+}
+
+/****** paginator *******/
+.paginatorProduct .paginator{
+    text-align: right;
+    border-top: 2px solid #333;
+    padding: 15px 0 0 0;
+}
+.paginatorProduct .paginator a{
+    display: inline-block;
+    padding: 6px 13px;
+    text-align: center;
+    border: 1px solid #999;
+    margin: 0 0 0 5px;
+    color: #333;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.paginatorProduct .paginator a.currentPage{
+    background: #f8f8f8;
+}
+.paginatorProduct .paginator a.paging-first:after{
+    content: "\f100";
+}
+.paginatorProduct .paginator a.paging-previous:after{
+    content: "\f104";
+}
+.paginatorProduct .paginator a.paging-next:after{
+    content: "\f105";
+}
+.paginatorProduct .paginator a.paging-first, .paginatorProduct .paginator a.paging-previous, .paginatorProduct .paginator a.paging-last, .paginatorProduct .paginator a.paging-next{
+
+}
+.paginatorProduct .paginator a.labelPage{
+    display: none;
+}
+.paginatorProduct .paginator a.paging-last:after{
+    content: "\f101";
+}
+
+
+/****** Detail Product *******/
+.detailProduct{
+    margin: 0 0;
+    display: inline-block;
+    width: 100%;
+}
+#imgZoom{
+    float: left;
+    display: inline-block;
+}
+#zoomer {
+    width: 290px;
+    position: relative;
+    float: left;
+    margin: 0 15px 0 0;
+}
+#zoomSlide{
+    float: left;
+    position: relative;
+}
+#listImgZoom_2{
+    width: 70px;
+    float: left;
+    position: relative;
+}
+#listImgZoom_2 li img{
+    max-width: 100%;
+}
+#listImgZoom_2>li {
+    float: left;
+    height: 106px;
+    width: 100%;
+    margin: 2px 0;
+    overflow: hidden;
+}
+#prevSlideZ{
+    top: -13px;
+    position: absolute;
+    left: 40%;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #000;
+}
+#nextSlideZ{
+    bottom: -13px;
+    position: absolute;
+    left: 40%;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #000;
+}
+
+
+.descriptionProduct{
+    float: left;
+    width: 630px;
+    margin: 0 0 0 35px;
+}
+.descriptionProduct>h1{
+    margin: 0 0;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 300;
+}
+.code{
+    color: #999;
+    border-bottom: 1px solid #ccc;
+    font-weight: 300;
+    padding: 15px 0 10px 0;
+    font-size: 15px;
+    margin: 0 0
+}
+.price{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    margin: 0 0;
+}
+.price span{
+    font-weight: 400;
+    font-size: 25px;
+}
+.price i{
+    text-decoration: line-through;
+    font-style: normal;
+    margin: 0 0 0 10px;
+    color: #999;
+    font-weight: 300;
+}
+.attrColor{
+    padding: 20px 0 0 0;
+}
+.attr>a{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 0 1px #AFAFAF;
+    margin: 0 6px 0 0;
+    cursor: pointer;
+    text-align: center;
+    line-height: 23px;
+    color: #333;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.attr>a:hover{
+    box-shadow: 0 0 0 1px #FF7A00;
+}
+.attr>a.active{
+    box-shadow: 0 0 0 1px #FF7A00;
+}
+.attrSize>a{
+    background: #f9f9f9;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 0 1px #AFAFAF;
+}
+.attrSize>span>a{
+    color: #888;
+    font-weight: 300;
+    margin: 0 0 0 5px;
+    line-height: 30px;
+    font-size: 13px;
+}
+.productQuantity{
+    display: inline-block;
+    width: 100%;
+    margin: 15px 0 0 0;
+}
+.productQuantity i{
+    width: 28px;
+    height: 28px;
+    line-height: 25px;
+    display: inline-block;
+    border: 1px solid #CCC;
+    text-align: center;
+    font-style: normal;
+    cursor: pointer;
+    background: #ddd;
+    float: left;
+}
+.productQuantity i#Quantity{
+    width: 38px;
+    border-right: none;
+    border-left: none;
+    background: #FFF;
+}
+.productQuantity i:focus{
+    border: 1px solid #999;
+}
+.lAddCard{
+    margin: 15px 0 0 0;
+}
+.lAddCard a.btnAddCart{
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: #FFF;
+    margin: 0 0 0 2px;
+    padding: 6px 28px;
+    display: inline-block;
+    float: left;
+    background: #000;
+    border: 1px solid #FFF;
+    box-shadow: 0 0 0 2px #000;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+}
+.lAddCard a.btnAddCart:hover{
+    background: #333;
+    box-shadow: 0 0 0 2px #333;
+}
+.lAddCard a.fav{
+    height: 39px;
+    width: 50px;
+    display: inline-block;
+    box-shadow: 0 0 0 2px #B7B7B7;
+    text-align: center;
+    line-height: 38px;
+    color: #B7B7B7;
+    margin: 0 0 0 10px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.lAddCard a.fav:hover{
+    color: #CE4545;
+    box-shadow: 0 0 0 2px #CE4545;
+}
+.detailPayorder{
+    margin: 30px 0 0 0;
+}
+.detailPayorder>div>label{
+    font-weight: 400;
+    margin: 0 0;
+    text-transform: uppercase;
+}
+.detailPayorder>div>label i{
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}
+.detailPayorder>div>div *{
+    margin: 0 0;
+    padding: 0 0;
+}
+.detailPayorder>div>div{
+    display: none;
+    margin: 10px 0 0 15px;
+}
+.detailPayorder>div>div ul{
+    margin: 0 0 0 13px;
+}
+.detailPayorder>div>div ul li{
+    list-style: disc;
+    color: #999;
+    margin: 3px 0;
+}
+
+.detailPayorder>div.active>div{
+    /*display: block;*/
+}
+.detailPayorder .description{
+    border-top: 1px solid #CCC;
+}
+.detailPayorder>div{
+    padding: 10px 0;
+    border-bottom: 1px solid #CCC;
+}
+/******** Card **********/
+.cart h1{
+    text-align: left;
+}
+.cart table tr{
+    border: 1px solid #DCDCDC;
+}
+.cart table tr th{
+    border-right: 1px solid #DCDCDC;
+    padding: 8px 10px;
+    background: #f9f9f9;
+}
+.cart table tr td{
+    border-right: 1px solid #DCDCDC;
+    padding: 8px 10px;
+}
+.cart table tr td a{
+    color: #333;
+}
+.cart table tr td a span{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 10px;
+    font-weight: 300;
+    border-radius: 50%;
+    text-align: center;
+    background: #B3B3B3;
+    color: #FFF;
+    overflow: hidden;
+    position: relative;
+    top: 2px;
+    margin: 0 0;
+}
+.cart table tr td a span.colorAttr{
+    text-indent: -1500px;
+    margin: 0 0 0 5px;
+}
+.cart table tr td select{
+    border-radius: 0;
+    border: 1px solid #CCC;
+    width: 50px;
+}
+.cart table tr td select:focus{
+    outline: none;
+}
+.cart table tr td .deleteCart{
+    cursor: pointer;
+}
+.backhomeCheckout{
+    display: inline-block;
+    width: 100%;
+}
+.backhomeCheckout a{
+    margin: 10px 0 0 0;
+    display: inline-block;
+    padding: 5px 15px;
+    background: #000;
+    color: #FFF;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: right;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.backhomeCheckout a:first-child:hover{
+    opacity: 0.8;
+}
+.backhomeCheckout a:last-child{
+    background: none;
+    color: #999;
+    text-transform: none;
+}
+
+/****** Checkout *******/
+.checkout .titleHome{
+    text-align: left;
+}
+.checkout .col-md-7 form div label{
+    display: block;
+}
+.checkout .col-md-7 form div input{
+    padding: 6px 10px;
+    width: 250px;
+}
+.checkout>form>.col-md-6>p{
+    border-bottom: 1px solid #CCC;
+    padding: 0 0 5px 0;
+    margin: 0 0 20px 0;
+}
+.checkout>form>.col-md-6>p>span{
+    text-transform: uppercase;
+    font-size: 16px;
+    /*width: 36px;*/
+    /*height: 36px;*/
+    /*display: inline-block;*/
+    /*border-radius: 50%;*/
+    /*border: 1px solid #CCC;*/
+    /*text-align: center;*/
+    /*line-height: 34px;*/
+    /*color: #999;*/
+}
+.checkout>form>.col-md-6 >div{
+    margin: 10px 0 0 0;
+}
+.checkout>form>.col-md-6 div>label{
+    display: block;
+    font-weight: 400;
+}
+.checkout>form>.col-md-6 div>input{
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.checkout>form>.col-md-6 div>textarea{
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 60px;
+    padding: 5px 10px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.checkout>form>.col-md-6 div>input[type=submit]{
+    background: #111;
+    color: #FFF;
+    border: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 8px 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.checkout>form>.col-md-6 div>input[type=submit]:hover{
+    background: #333;
+}
+.checkout>form>.col-md-6 div>input[type=submit]:focus{
+    outline: none;
+    background: #333;
+    border: none;
+    box-shadow: 0 2px #989898;
+}
+.checkout>form>.col-md-6 div>input:focus, .checkout>form>.col-md-6 div>textarea:focus{
+    outline: none;
+    border: 1px solid #3DC3E0;
+}
+.checkout>form>.col-md-6 ul li{
+    border-bottom: 1px solid #DDD;
+    margin: 0 0 10px 0;
+}
+.checkout>form>.col-md-6 ul li a{
+    color: #333;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.checkout>form>.col-md-6 ul li a span{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 10px;
+    font-weight: 300;
+    border-radius: 50%;
+    text-align: center;
+    background: #B3B3B3;
+    color: #FFF;
+    overflow: hidden;
+    position: relative;
+    top: 2px;
+    margin: 0 0;
+}
+.checkout>form>.col-md-6 ul li a span.colorAttr{
+    text-indent: -1500px;
+    margin: 0 0 0 5px;
+}

@@ -1,0 +1,305 @@
+<?php
+$form = $this->form;
+echo $this->headtitle($this->escapehtml($this->translate('Sửa - '.$form->get('name')->getValue())));
+?>
+<script>
+    $(function(){
+        $('#textarea_full').summernote({
+            height: 450
+        });
+        $('.price').autoNumeric('init',{'mDec':0});
+    });
+</script>
+
+<input type="hidden" id="productId" value="<?= $this->id ?>" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row-fluid">
+            <div class="span8" style="">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-navicon"></i>Sửa sản phẩm</div>
+                    </div>
+                    <div class="portlet-body form">
+                            <div class="row-fluid">
+                                <div class="span9">
+                                    <div class="control-group">
+                                        <label class="control-label" for="firstName">Tiêu đề</label>
+                                        <div class="controls">
+                                            <?=$this->formelement($form->get('name')->setAttributes(['class' => 'm-wrap span12','placeholder'=>'Tiêu đề']))?>
+                                            <?= $this->formelementerrors($form->get('name'),['class' => 'help-block'])?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span3">
+                                    <div class="control-group">
+                                        <label class="control-label" for="firstName">Mã sản phẩm</label>
+                                        <div class="controls">
+                                            <?=$this->formelement($form->get('code')->setAttributes(['class' => 'm-wrap span12','placeholder'=>'Mã sản phẩm']))?>
+                                            <?= $this->formelementerrors($form->get('code'),['class' => 'help-block'])?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="control-group">
+                                        <label class="control-label" for="firstName">Mô tả</label>
+                                        <div class="controls">
+                                            <?=$this->formelement($form->get('intro')->setAttributes(['id' => 'textarea_full','class' => 'm-wrap span12 textArea','placeholder'=>'Mã sản phẩm']))?>
+                                            <?= $this->formelementerrors($form->get('intro'),['class' => 'help-block'])?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <?=$this->formelement($form->get('submit')->setAttributes(['class' => 'btn blue']))?>
+                                <?=$this->formelement($form->get('reset')->setAttributes(['class' => 'btn']))?>
+    <!--                            <button type="submit" class="btn blue"><i class="icon-ok"></i> Lưu</button>-->
+    <!--                            <button type="button" class="btn">Hủy</button>-->
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="portlet box grey">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-navicon"></i>Tùy chọn</div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Giá</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('price')->setAttributes(['class' => 'm-wrap span12 price']))?>
+                                        <?= $this->formelementerrors($form->get('price'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Giá khuyến mãi</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('priceOld')->setAttributes(['class' => 'm-wrap span12 price']))?>
+                                        <?= $this->formelementerrors($form->get('priceOld'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Số lượng</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('quantity')->setAttributes(['class' => 'm-wrap span12']))?>
+                                        <?= $this->formelementerrors($form->get('quantity'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Danh mục</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('categoryId')->setAttributes(['class' => 'm-wrap span12','tabindex' => '1']))?>
+                                        <?= $this->formelementerrors($form->get('categoryId'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Gian hàng</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('storeId')->setAttributes(['class' => 'm-wrap span12','tabindex' => '1']))?>
+                                        <?= $this->formelementerrors($form->get('storeId'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Trạng thái</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('status')->setAttributes(['class' => 'm-wrap span12','tabindex' => '1']))?>
+                                        <?= $this->formelementerrors($form->get('status'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Thương hiệu</label>
+                                    <div class="controls">
+                                        <?=$this->formelement($form->get('brandId')->setAttributes(['class' => 'm-wrap span12','tabindex' => '1']))?>
+                                        <?= $this->formelementerrors($form->get('brandId'),['class' => 'help-block'])?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="portlet box grey">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-navicon"></i>Màu</div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="control-group">
+                            <div class="controls">
+                                <?=$this->formelement($form->get('color')->setAttributes(['data-placeholder'=> 'Chọn màu sắc','class' => 'chosen span12','tabindex' => '6', 'multiple'=>'multiple']))?>
+                                <?= $this->formelementerrors($form->get('color'),['class' => 'help-block'])?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="portlet box grey">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-navicon"></i>Size</div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="control-group">
+                            <div class="controls">
+                                <?=$this->formelement($form->get('size')->setAttributes(['data-placeholder'=> 'Chọn size','class' => 'chosen span12','tabindex' => '6', 'multiple'=>'multiple']))?>
+                                <?= $this->formelementerrors($form->get('size'),['class' => 'help-block'])?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="portlet box grey">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-navicon"></i>Hình ảnh</div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="control-group">
+                            <!-- Button to trigger modal -->
+                            <a id="abc" href="#TaskListDialog" role="button" class="btn btn-block" data-toggle="modal">Hình ảnh <i class="fa fa-upload"></i></a>
+                            <ul id="imagesLibrary" class="listImage1">
+
+                                <div class="clear"></div>
+                            </ul>
+                            <?=$this->formelement($form->get('images')->setAttributes(['class' => 'm-wrap span12','id' => 'images', 'data-item' => $this->itemId, 'data-type' => '2']))?>
+                            <div id="TaskListDialog" class="modal hide in" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel">
+                                <div class="modal-header">
+                                    <h3>Hình ảnh</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#tab1" data-toggle="tab">Danh sách</a></li>
+                                            <li><a href="#tab2" data-toggle="tab">Upload</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab1">
+                                                <div id="dataImage" class="" style="overflow-y: scroll;height: 300px">
+                                                    <ul id="listImage" class="listImage">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tab2">
+                                                <label id="percentComplete">Lưu ý ảnh nhỏ hơn 3Mb</label>
+                                                <input type="file" name="imagemulti[]" class="m-wrap btn-block" id="imagemulti" multiple="multiple">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a id="insertMulti" class="btn btn-primary">Sử dụng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+    .portlet-tabs .nav-tabs{
+        height: 41px;
+    }
+    .nav-tabs li a{
+        /*color: #FFF;*/
+    }
+    .nav-tabs li a:hover{
+        color: #333;
+    }
+    #image_upload, #imagemulti, #imagemulti1{
+        border: none;
+        overflow: hidden;
+    }
+    #image_upload:focus, #imagemulti:focus, #imagemulti1:focus{
+        outline: none;
+    }
+    #image_upload:before, #imagemulti:before, #imagemulti1:before{
+        content: 'Chọn File ảnh';
+        display: inline-block;
+        background: #FFF;
+        border: 1px solid #CCC;
+        padding: 1px 0;
+        width: 99%;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-size: 10pt;
+        text-indent: 10px;
+    }
+    #imagemulti1:before{
+        border: none;
+    }
+    ul.listImage1{
+        margin: 10px 0 5px 0;
+        padding: 0 0;
+    }
+    ul.listImage1 li{
+        list-style: none;
+        width: 24%;
+        margin: 0 1% 2px 0;
+        display: inline-block;
+        position: relative;
+        height: 50px;
+        overflow: hidden;
+        background: #ccc;
+    }
+    ul.listImage1 li.active:before{
+        content: 'Sử dụng';
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: rgba(60, 60, 60, 0.52);
+        opacity: 1;
+        top: 0;
+        line-height: 80px;
+        color: #FFF;
+        left: 0;
+        z-index: 1;
+        position: absolute;
+        text-align: center;
+    }
+    ul.listImage1 li img{
+        max-width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .clear{clear: both}
+
+</style>
+<?php
+
+?>

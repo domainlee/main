@@ -1,0 +1,20 @@
+<?php
+	$this->headTitle($this->escapeHtml($this->translate("Đăng nhập")));
+    $cs = [
+        '/tp/F001/css/u.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="signin signup">
+                <?php
+
+                    echo "<h1>". $this->translate("Đăng nhập") ."</h1>";
+                    echo $this->partial('partial/form', array('form' => $this->form));
+                ?>
+            </div>
+        </div>
+    </div>
+</div>

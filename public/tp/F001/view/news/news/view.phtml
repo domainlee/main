@@ -1,0 +1,56 @@
+<?php
+    $view = $this->news;
+    $current_page_URL = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+    $a = json_decode($view->getExtraContent());
+    $this->headTitle($this->escapeHtml($this->translate($view->getTitle())));
+    $this->headMeta()->appendName('url', ('http://'.$current_page_URL));
+//    $this->headMeta()->appendName('image', ($view->getTitle() ? : $view->getTitle()));
+
+    $this->headMeta()->appendName('description', ($view->getTitle() ? : $view->getTitle()));
+    $this->headMeta()->appendName('keywords', ($view->getExtraContent() ? $a->serivce : $view->getTitle()));
+    $this->headMeta()->appendProperty('og:title', $view->getTitle());
+    $cs = [
+        '/tp/F001/css/n.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+    $js = [
+        '/tp/F001/js/n.js'
+    ];
+    echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="detailNews">
+                <?php
+                    $n = $this->newsCategory()->getCategories();
+                    if(count($n)){
+                        echo '<ul class="navNews">';
+                        echo '<li><a href="/news">Tất cả</a></li>';
+                        foreach($n as $b){
+                            echo '<li><a '.($view->getCategoryId() == $b->getId() ? 'class="active"':'').' href="'.$b->getViewLink().'">'.$b->getName().'</a></li>';
+                        }
+                        echo '</ul>';
+                    }
+                ?>
+                <div>
+                    <h1><?= $view->getTitle() ?></h1>
+                    <div class="social">
+                        <?php
+                        ?>
+                        <div style="float: left;margin: 0 5px 0 0;" class="fb-like" data-href="<?= $current_page_URL.$view->getViewLink() ?>" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                        <div class="g-plusone" data-size="medium"></div>
+                    </div>
+                    <script src="https://apis.google.com/js/platform.js" async defer>
+                        {lang: 'vi'}
+                    </script>
+                </div>
+                <?php
+                    echo $view->getContent();
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+

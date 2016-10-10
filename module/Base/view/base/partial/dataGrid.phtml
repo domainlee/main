@@ -1,0 +1,72 @@
+<?php
+/**
+ * @param \ZendX\DataGrid\Column $column
+ */
+/**
+ * @author VanCK
+ * @param \ZendX\DataGrid\Row $row
+ * @param bool $isHeader
+ */
+if(!function_exists('renderDgRow')){
+	function renderDgRow($row, $isHeader = false, $view)
+	{
+		echo "<tr>";
+		if($row->getColumns()){
+		    foreach($row->getColumns() as $column) {
+		        /* @var $column \ZendX\DataGrid\Column */
+//		        $attrs = renderAttributes($column->getAttributes());
+		        echo $isHeader ? "<th>" : "<td>";
+		        echo $column->getContent();
+		        echo $isHeader ? '</th>' : '</td>';
+		    }
+		}
+		echo '</tr>';
+	}
+}
+
+/**
+ * @param string $attrs
+ * @return string
+ */
+if(!function_exists('renderAttributes')){
+	function renderAttributes($attrs = null)
+	{
+		$results = '';
+		if(is_array($attrs)) {
+			foreach ($attrs as $key => $value) {
+				$results .= " $key='$value'";
+			}
+		}
+		return $results;
+	}
+}
+/* @var $dg \ZendX\DataGrid\DataGrid */
+if(!($dg = $this->dataGrid)) {
+	return;
+}
+
+$dg->addAttributes(['class' => 'table-bordered']);
+$dg->addAttributes(['class' => 'table table-bordered']);
+echo "<table class='dg table table-bordered table-hover table-condensed'>";
+    if(is_array($dg->getHeaders())) {
+        echo '<thead>';
+        foreach($dg->getHeaders() as $header) {
+            renderDgRow($header, true, $this);
+        }
+        echo '</thead>';
+    }
+    if(is_array($dg->getRows())) {
+        $bodyAttrs = renderAttributes($dg->getBodyAttributes());
+        echo "<tbody>";
+        foreach($dg->getRows() as $row) {
+            renderDgRow($row, false, $this);
+        }
+        echo '</tbody>';
+    }
+echo '</table>';
+
+if($dg->getDataSource() instanceof Zend\Paginator\Paginator) {
+    echo '<div class="dataTables_paginate paging_bootstrap pagination">';
+    echo $this->paginationControl($dg->getDataSource(), 'Sliding', 'partial/paginatorItem');
+    echo '</div>';
+}

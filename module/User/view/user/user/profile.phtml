@@ -1,0 +1,30 @@
+<?php $item = $this->user;?>
+<div id="profile">
+	<div id="profile-img">
+		<img src="" title="">
+	</div>
+	<div id="profile-info">
+		<table class="dg table table-bordered table-hover table-condensed" style="width: 100%">
+			<tr>
+				<td id="profile-td-bg">Họ tên</td>
+				<td><?= $item->getFullName()?></td>
+			</tr>
+			<tr>
+				<td id="profile-td-bg">Tên đăng nhập</td>
+				<td><?= $item->getUserName() ?></td>
+			</tr>
+			<tr>
+				<td id="profile-td-bg">Quyền</td>
+				<td><?= $item->getRoleName()?></td>
+			</tr>
+			<tr>
+				<td id="profile-td-bg">Email</td>
+				<td><?= $item->getEmail()?></td>
+			</tr>
+			<tr>
+				<td id="profile-td-bg">Địa chỉ</td>
+				<td><?= $item->getAddress()?></td>
+			</tr>
+		</table>
+	</div>
+</div>

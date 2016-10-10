@@ -1,0 +1,39 @@
+<?php
+if ($this->pageCount) {
+    echo '<ul class="paginator">';
+//    echo '<span class="labelPages">';
+//    echo number_format($this->firstItemNumber) . ' - ' .
+//        number_format($this->lastItemNumber) . ' / ' .
+//        number_format($this->totalItemCount);
+//    echo '</span>';
+    if ($this->pageCount > 1) {
+        $params = $this->UriParams()->getRequest()->getQuery();
+        if (isset($this->previous)) {
+//            $params['page'] = $this->first;
+//            echo '<li><a class="fa fa-step-backward" href="?page='.$params['page'].'" title="'. $this->translate('Trang đầu') .'"></a></li>';
+            $params['page'] = $this->previous;
+            if($params['page'] == 1){
+                echo '<li><a class="fa fa-backward" href="?" title="'. $this->translate('Trang trước') .'">← <span>Prev</span></a></li>';
+            }else{
+                echo '<li><a class="fa fa-backward" href="?page='.$params['page'].'" title="'. $this->translate('Trang trước') .'">← <span>Prev</span></a></li>';
+            }
+        } else {
+            echo '<li class="prev disabled"><a>← <span>Prev</span></a></li>';
+        }
+        if(!$params['page']){
+            echo '<li><a>1</a></li>';
+        }elseif($params['page']){
+            echo '<li><a>'.($params['page']+1).'</a></li>';
+        }
+
+        if (isset($this->next)) {
+            $params['page'] = $this->next;
+            echo '<li><a class="fa fa-forward" href="?page='.$params['page'].'" title="'. $this->translate('Trang sau') .'"><span>Next</span> → </a></li>';
+//            $params['page'] = $this->last;
+//            echo '<li><a class="fa fa-step-forward" href="?page='.$params['page'].'" title="'. $this->translate('Trang cuối') .'"></a></li>';
+        } else {
+            echo '<li class="next disabled"><a class="disabled fa fa-forward" title="'. $this->translate('Trang sau') .'"><span>Next</span> → </a></li>';
+        }
+    }
+    echo '</ul>';
+}

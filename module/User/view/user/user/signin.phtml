@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	$(function(){
+		$('.navbar').css({'display':'none'});
+	});
+</script>
+<div id="main-sg">
+<h3><i class="fa fa-android"></i><?= $this->translate('Đăng nhập')?></h3>
+<div id='signin'>
+<?php
+	$this->headTitle($this->escapeHtml($this->translate("Đăng nhập")));
+	echo $this->partial('partial/form', array('form' => $this->form));
+?>
+	</div>
+	<div class="login-container-footer">
+                <div class="pull-left"><a href=""><i class="fa fa-key"></i> Quên mật khẩu</a></div>
+                <div class="pull-right"><a href="/mainweb/public/user/signup">Đăng ký <i class="fa fa-user"></i></a></div>
+    </div>
+</div>

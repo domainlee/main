@@ -1,0 +1,174 @@
+<?php
+$q = $this->request->getQuery('q');
+
+$this->headTitle($this->escapeHtml($this->translate('Tìm kiếm sản phẩm "'.$q.'"')));
+$this->headMeta()->appendName('description', ('Tìm kiếm sản phẩm "'.$q.'"'));
+$this->headMeta()->appendName('keywords', ('Tìm kiếm sản phẩm "'.$q.'"'));
+$this->headMeta()->appendProperty('og:title', 'Tìm kiếm sản phẩm "'.$q.'"');
+$cs = [
+    '/tp/F00001/css/p.css'
+];
+echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+
+$product = $this->paginator;
+?>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/product">Tìm kiếm</a></li>
+            </ul>
+            <div class="productCategory">
+                <div class="left">
+                    <div class="box">
+                        <h1>Có gì hot ?</h1>
+                        <ul>
+                            <li><a href="">Hàng mới</a></li>
+                            <li><a href="">OFF 30% for more than 2 items</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h1>Danh mục sản phẩm</h1>
+                        <ul>
+                            <?php
+                            $category = $this->category()->getCategories();
+                            if(count($category)){
+                                foreach($category as $cc){
+                                    echo '<li><a href="'.$cc->getViewLink().'">'.$cc->getName().'</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h1>Giá <?= (isset($this->price) ? '<a href="'.$this->product()->removeFilter('price').'" title="Xóa lựa chọn Giá">x</a>':null)  ?></h1>
+                        <ul>
+                            <?php
+                            $this->product()->removeFilter('price');
+                            $price = [];
+                            if (is_array($this->price)) {
+                                $price = $this->price;
+                            }
+                            if (in_array(array(0, 100000), $price)) {
+                                echo '<li><a rel="nofollow" href="' . $this->product()->removeFilter('price', '0:100000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Dưới 100k</a></li>';
+                            }else{
+                                echo '<li><a rel="nofollow" href="' . $this->product()->addFilter('price', '0:100000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Dưới 100k</a></li>';
+                            }
+                            if (in_array(array(100000, 200000), $price)) {
+                                echo '<li><a href="' . $this->product()->removeFilter('price', '100000:200000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Từ 100k - 200k</a></li>';
+                            }else{
+                                echo '<li><a href="' . $this->product()->addFilter('price', '100000:200000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Từ 100k - 200k</a></li>';
+                            }
+                            if (in_array(array(200000, 300000), $price)) {
+                                echo '<li><a href="' . $this->product()->removeFilter('price', '200000:300000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Từ 200k - 300k</a></li>';
+                            }else{
+                                echo '<li><a href="' . $this->product()->addFilter('price', '200000:300000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Từ 200k - 300k</a></li>';
+                            }
+                            if (in_array(array(300000, 400000), $price)) {
+                                echo '<li><a href="' . $this->product()->removeFilter('price', '300000:400000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Từ 300k - 400k</a></li>';
+                            }else{
+                                echo '<li><a href="' . $this->product()->addFilter('price', '300000:400000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Từ 300k - 400k</a></li>';
+                            }
+                            if (in_array(array(400000, 500000), $price)) {
+                                echo '<li><a href="' . $this->product()->removeFilter('price', '400000:500000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Từ 400k - 500k</a></li>';
+                            }else{
+                                echo '<li><a href="' . $this->product()->addFilter('price', '400000:500000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Từ 400k - 500k</a></li>';
+                            }
+                            if (in_array(array(500000), $price)) {
+                                echo '<li><a href="' . $this->product()->removeFilter('price', '500000') . '"><i class="fa fa fa-circle" aria-hidden="true"></i>Trên 500k</a></li>';
+                            }else{
+                                echo '<li><a href="' . $this->product()->addFilter('price', '500000') . '"><i class="fa fa-circle-thin" aria-hidden="true"></i>Trên 500k</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+
+                    <div class="box">
+                        <h1>Màu <?= (isset($this->requestColor) ? '<a href="'.$this->product()->removeFilter('color').'" title="Xóa lựa chọn Color">x</a>':null)  ?></h1>
+                        <?php
+                        $request = $this->requestColor;
+                        $requests = explode(',',$request);
+                        $attr = $this->home()->getAttr(['type' => 1, 'group' => true]);
+                        if(count($attr)){
+                            echo '<ul class="color">';
+                            foreach($attr as $at){
+                                if(in_array($at->getProductAttrId(),$requests)){
+                                    echo '<li><a class="active" href="' . $this->product()->removeFilter('color', $at->getProductAttrId()) . '" style="background-color: '.$at->getColorCode().'" title="'.$at->getName().'"></a></li>';
+                                }else{
+                                    echo '<li><a href="' . $this->product()->addFilter('color', $at->getProductAttrId()) . '" style="background-color: '.$at->getColorCode().'" title="'.$at->getName().'"></a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                        }
+                        ?>
+                    </div>
+
+                    <div class="box">
+                        <h1>Size <?= (isset($this->requestSize) ? '<a href="'.$this->product()->removeFilter('size').'" title="Xóa lựa chọn Size">x</a>':null)  ?></h1>
+                        <?php
+                        $request = $this->requestSize;
+                        $requests = explode(',',$request);
+                        $attr = $this->home()->getAttr(['type' => 2, 'group' => true]);
+                        if(count($attr)){
+                            echo '<ul class="color">';
+                            foreach($attr as $at){
+                                if(in_array($at->getProductAttrId(),$requests)){
+                                    echo '<li><a href="' . $this->product()->removeFilter('size', $at->getProductAttrId()) . '" class="active" title="'.$at->getName().'">'.$at->getName().'</a></li>';
+                                }else{
+                                    echo '<li><a href="' . $this->product()->addFilter('size', $at->getProductAttrId()) . '" title="'.$at->getName().'">'.$at->getName().'</a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                        }
+                        ?>
+                    </div>
+                </div>
+                <?php
+                $show = $this->request->getQuery('show');
+
+                if(count($product)){
+                    echo '<div class="right">';
+                    echo '<h1><span>Tìm kiếm với từ khóa "'.(isset($q) ? $q:null).'"</span>
+                          <select onchange="location = this.options[this.selectedIndex].value;">
+                                <option value="' . $this->product()->removeFilter('show') . '">Mới cập nhật</option>
+                                <option value="' . $this->product()->addFilter('show', 'priceAsc',2) . '" '.($show == 'priceAsc' ? 'selected':'').'>Giá tăng dần</option>
+                                <option value="' . $this->product()->addFilter('show', 'priceDesc',2) . '" '.($show == 'priceDesc' ? 'selected':'').'>Giá giảm dần</option>
+                                <option value="' . $this->product()->addFilter('show', 'SaleOff',2) . '" '.($show == 'SaleOff' ? 'selected':'').'>Giảm giá</option>
+                          </select>
+                        </h1>';
+                    echo '<ul class="lP">';
+                    foreach($product as $p){
+                        $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F00001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li>
+                                <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                <div>
+                                    <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                    <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                </div>
+                            </li>';
+                    }
+                    echo '</ul>';
+                    echo '<div class="paginatorProduct">';
+                    echo $this->paginationControl($this->paginator, 'Elastic', 'partial/listPage');
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
+
+            </div>
+        </div>
+    </div>
+</div>

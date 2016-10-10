@@ -1,0 +1,12 @@
+<?php
+$paginator = $this->paginator;
+
+if(count($paginator)){
+    foreach($paginator as $p){
+        echo '<a href="../'.$p->getViewLink().'">'.$p->getName().'</a>';
+    }
+}
+else{
+    echo '<a>Không có kết quả nào</a>';
+}
+?>

@@ -1,0 +1,144 @@
+<?php
+echo $this->headtitle($this->escapehtml($this->translate('Danh sách Banner')));
+?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Danh sách Banner</h3>
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="/admin">Admin</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="/admin/media/banner">Banner</a>
+                </li>
+            </ul>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption"><i class="fa fa-edit"></i>Danh sách</div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="btn-group">
+                            <a href="/admin/media/add" id="sample_editable_1_new" class="btn green">
+                                Thêm mới <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">Công cụ <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#">Print</a></li>
+                                <li><a href="#">Save as PDF</a></li>
+                                <li><a href="#">Export to Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row-fluid">
+                            <div class="span2"></div>
+                            <div class="span10">
+                                <?php
+                                echo $this->partial ( 'partial/form', array (
+                                    'form' => $this->fFilter
+                                ));
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        echo $dg = new \Admin\Dg\DgBanner( array (
+                            'data' => $this->results->getData (),
+                            'paging' => $this->results->getPaging (),
+                            'rowCount' => $this->results->getRowCount (),
+                            'rowInPage' => $this->results->getRowInPage (),
+                        ));
+                        ?>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="confdelete"></div>
+<div id="err"></div>
+<div id="uploadimg"></div>
+<style>
+    .dg-container{
+        display: inline-block;
+        width: 100%;
+    }
+    .fFilter{
+        text-align: right;
+    }
+    .fFilter #id{
+        width: 10% !important;
+        margin: 0 5px 0 0;
+    }
+    .fFilter #name{
+        margin: 0 5px 0 0;
+    }
+</style>
+
+<script>
+    $(function(){
+        var hide = true;
+        var t = $('.deleteArticle');
+
+        t.click(function(e){
+            var t = $(this);
+            var td = t.closest('tr');
+            hide = false;
+            t.removeClass('fa fa-trash-o');
+            t.text('OK');
+            if(t.text() == 'OK'){
+                t.click(function(e){
+                    $.post('/admin/media/delete',{id: t.attr('data-id')},function(r){
+                        if(r.code == 0){
+                            alert(r.messenger);
+                        }else{
+                            td.fadeOut(600,function(){
+                                td.remove();
+                            });
+                        }
+                    });
+                    hide = false;
+                });
+            }
+        });
+
+        $('html').click(function(){
+            if(hide){
+                t.addClass('fa fa-trash-o').text('');
+            }
+            hide = true;
+        });
+
+        $('.changeType').click(function(){
+            var id = $(this).attr('data-id'), _this = $(this);
+            $.post('/admin/media/change',{id: id},function(r){
+                if(r.code == 1){
+                    if(r.status == 1){
+                        _this.find('i').remove();
+                        _this.append('<i class="fa fa-eye"></i>');
+                    }else if(r.status == 0){
+                        _this.find('i').remove();
+                        _this.append('<i class="fa fa-eye-slash"></i>');
+                    }
+                }else if(r.code == 0){
+                    alert(r.messenger);
+                }
+            });
+        });
+    });
+</script>

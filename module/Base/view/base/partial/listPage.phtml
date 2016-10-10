@@ -1,0 +1,45 @@
+<?php
+if ($this->pageCount) {
+    echo '<div class="paginator">';
+    echo '<a style="display: none">'.number_format($this->firstItemNumber) . '</a>' .
+        '<a style="display: none">'.number_format($this->lastItemNumber) . '</a>'.
+        '<a style="display: none">'.number_format($this->totalItemCount).'</a>';
+
+    if ($this->pageCount > 1) {
+        echo '<a class="labelPage">Trang</a>';
+        $params = $this->uriParams()->getQueryParams();
+
+        if (isset($this->previous)) {
+            $params['page'] = $this->first;
+            echo '<a class="paging-first" title="' . $this->translate('Trang đầu') . '"
+               href="' . $this->uriParams()->build($params) . '"></a>';
+
+            $params['page'] = $this->previous;
+            echo '<a class="paging-previous ico" title="' . $this->translate('Quay lại') . '"
+               href="' . $this->uriParams()->build($params) . '"></a>';
+        }
+
+        /*Numbered page links*/
+        foreach ($this->pagesInRange as $page) {
+            if ($page != $this->current) {
+                $params['page'] = $page;
+                echo '<a href="' . $this->uriParams()->build($params) . '" rel="' . $page . '">
+                    ' . $page . '</a>';
+            } else {
+                echo '<a class="currentPage">' . $page . '</a>';
+            }
+        }
+
+        if (isset($this->next)) {
+            $params['page'] = $this->next;
+            echo '<a class="paging-next ico" title="' . $this->translate('Trang sau') . '"
+               href="' . $this->uriParams()->build($params) . '"></a>';
+
+            $params['page'] = $this->last;
+            echo '<a class="paging-last" title="' . $this->translate('Trang cuối') . '"
+               href="' . $this->uriParams()->build($params) . '"></a>';
+        }
+    }
+
+    echo '</div>';
+}

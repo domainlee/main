@@ -1,0 +1,227 @@
+<?php
+    echo $this->headtitle($this->escapehtml($this->translate('Danh sách sản phẩm')));
+?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">
+                Danh sách sản phẩm
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="/admin">Admin</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="/admin/product">Sản phẩm</a>
+                </li>
+            </ul>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption"><i class="fa fa-edit"></i>Danh sách sản phẩm</div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="btn-group">
+                            <a href="/admin/product/add" id="sample_editable_1_new" class="btn green">
+                                Thêm mới <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">Công cụ <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li style="display: none"><a href="#">Print</a></li>
+                                <li><a href="#ImportUpload" role="button" data-toggle="modal">Import sản phẩm</a></li>
+                                <li><a href="#">Export to Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row-fluid">
+                            <div class="span2"></div>
+                            <div class="span10">
+                                <?php
+                                echo $this->partial ( 'partial/form', array (
+                                    'form' => $this->fFilter
+                                ));
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        echo $dg = new \Admin\Dg\DgProduct ( array (
+                            'data' => $this->results->getData (),
+                            'paging' => $this->results->getPaging (),
+                            'rowCount' => $this->results->getRowCount (),
+                            'rowInPage' => $this->results->getRowInPage (),
+                        ));
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="ImportUpload" class="modal hide in" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel">
+    <div class="modal-header">
+        <h3>Import sản phẩm</h3>
+    </div>
+    <div class="modal-body">
+        <div class="tabbable">
+            <p class="notiUpload">Bạn cần upload file ảnh trước các dạng file name.jpg, name.png<br/>Tên ảnh trùng tên file trong danh sách sản phẩm</p>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Hình ảnh sản phẩm</a></li>
+                <li><a href="#tab2" data-toggle="tab">Danh sách sản phẩm</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <label id="percentComplete">Lưu ý ảnh nhỏ hơn 3Mb <span class="process"></span></label>
+                    <input type="file" name="imagemulti[]" class="m-wrap btn-block" id="imagemulti1" multiple="multiple">
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <label id="percentComplete">File định dạng xlsx</label>
+                    <input type="file" name="fileName" class="m-wrap btn-block" id="fileName" >
+                    <a id="submitImport">Import</a>
+                    <input id="data" type="hidden" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="insertMulti" class="btn btn-primary">Sử dụng</a>
+    </div>
+</div>
+
+<style>
+    #submitImport{
+        display: inline-block;
+        padding: 5px 10px;
+        background: #ccc;
+        margin: 10px 0 0 0;
+        color: #fff;
+        cursor: pointer;
+    }
+    .notiUpload{
+        border: 1px dashed #f1d8aa;
+        padding: 10px;
+        background: #fff7e8;
+        font-size: 12px;
+        line-height: 17px;
+        color: #b38838;
+        font-style: italic;
+    }
+    .dg-container{
+        display: inline-block;
+        width: 100%;
+    }
+    .fFilter{
+        text-align: right;
+    }
+    .fFilter #id{
+        width: 10% !important;
+        margin: 0 5px 0 0;
+    }
+    .fFilter #name{
+        margin: 0 5px 0 0;
+    }
+    #image_upload, #imagemulti, #imagemulti1, #fileName{
+        border: none;
+        overflow: hidden;
+    }
+    #image_upload:focus, #imagemulti:focus, #imagemulti1:focus, #fileName:focus{
+        outline: none;
+    }
+    #image_upload:before, #imagemulti:before, #imagemulti1:before, #fileName:before{
+        content: 'Chọn File định dạng xlsx';
+        display: inline-block;
+        background: #FFF;
+        border: 1px solid #CCC;
+        padding: 1px 0;
+        width: 99%;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-size: 10pt;
+        text-indent: 10px;
+    }
+    #imagemulti1:before{
+        content: 'Chọn nhiều file';
+    }
+    /*#imagemulti1:before{*/
+        /*border: none;*/
+    /*}*/
+</style>
+
+<script>
+    $(function(){
+        var hide = true;
+        var t = $('.deleteProduct');
+
+        t.click(function(e){
+            var t = $(this);
+            var td = t.closest('tr');
+            hide = false;
+            t.removeClass('fa fa-trash-o');
+            t.text('OK');
+            if(t.text() == 'OK'){
+                t.click(function(e){
+                    $.post('/admin/product/delete',{id: t.attr('data-id')},function(r){
+                        if(r.code == 0){
+                            alert(r.messenger);
+                        }else{
+                            td.fadeOut(600,function(){
+                                td.remove();
+                            });
+                        }
+                    });
+                    hide = false;
+                });
+            }
+        });
+
+        $('html').click(function(){
+            if(hide){
+                t.addClass('fa fa-trash-o').text('');
+            }
+            hide = true;
+        });
+
+        $('.changeType').click(function(){
+            var id = $(this).attr('data-id'), _this = $(this);
+
+            $.post('/admin/product/change',{id: id},function(r){
+                if(r.code == 1){
+                    if(r.status == 1){
+                        _this.find('i').remove();
+                        _this.append('<i class="fa fa-eye"></i>');
+                    }else if(r.status == 0){
+                        _this.find('i').remove();
+                        _this.append('<i class="fa fa-eye-slash"></i>');
+                    }
+                }else if(r.code == 0){
+                    alert(r.messenger);
+                }
+            });
+        });
+    })
+</script>
+
+<?php
+//    echo $this->headScript()->appendFile($this->basePath() . '/js/admin/excel/shim.js', 'text/javascript');
+//    echo $this->headScript()->appendFile($this->basePath() . '/js/admin/excel/jszip.js', 'text/javascript');
+//    echo $this->headScript()->appendFile($this->basePath() . '/js/admin/excel/xlsx.js', 'text/javascript');
+//    echo $this->headScript()->appendFile($this->basePath() . '/js/admin/excel/ods.js', 'text/javascript');
+//    echo $this->headScript()->appendFile($this->basePath() . '/js/admin/product/import.js', 'text/javascript');
+
+?>

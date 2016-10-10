@@ -1,0 +1,10 @@
+<?php
+echo $this->headScript()->prependFile($this->basePath() . '/js/article/article.js', 'text/javascript');
+?>
+<div id="uploadimg">
+	<?php 
+	echo $this->partial ( 'partial/form', array (
+			'form' => $this->fFilter
+	) );
+	?>
+</div>

@@ -1,0 +1,47 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <?php
+        echo $this->headTitle('Fashion')->setSeparator(' - ')->setAutoEscape(false);
+        $this->headMeta()->appendName('DC.language', 'scheme=utf-8 content=vi');
+        echo $this->headMeta();
+
+        echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => '/tp/boo/images/favicon.png']);
+        $cs = [
+            '/tp/F001/css/bootstrap.css',
+            '/tp/F001/css/font-awesome.min.css',
+            '/tp/F001/css/owl.carousel.css',
+            '/tp/F001/css/h.css',
+        ];
+        echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+        $js = [
+            '/tp/F001/js/jquery-1.11.2.min.js',
+        ];
+        echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+        ?>
+    </head>
+
+    <body>
+        <?php
+            echo $this->render('layout/header');
+            echo $this->content;
+            echo $this->render('layout/footer');
+        ?>
+    </body>
+    <?php
+        $r = [
+            '/tp/F001/css/r.css',
+        ];
+        echo '<link href="'.srcLink($r,1).'" media="screen" rel="stylesheet" type="text/css">';
+        $js = [
+            '/tp/F001/js/bootstrap.min.js',
+            '/tp/F001/js/jquery.lazyload.min.js',
+            '/tp/F001/js/owl.carousel.js',
+            '/tp/F001/js/jquery-ui-1.10.3.custom.min.js',
+            '/tp/F001/js/a.js'
+        ];
+        echo '<script type="text/javascript" src="'.srcLink($js,3).'"></script>';
+    ?>
+</html>

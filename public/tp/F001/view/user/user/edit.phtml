@@ -1,0 +1,14 @@
+<script type="text/javascript">
+$(function(){
+	$('#btnSubmit').attr('value','Lưu');
+	$('#btnResets').css('margin-left','55px');
+});
+
+</script>
+
+<div id="a-pro-add">
+	<?php
+		echo "<h4>". $this->translate("Sửa người dùng") ."</h4>";
+		echo $this->partial('partial/form', array('form' => $this->form));
+	?>
+</div>

@@ -1,0 +1,23 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate("Đăng ký")));
+    $cs = [
+        '/tp/F001/css/u.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="signup">
+                <?php
+                if($this->success){
+                    echo '<p style="text-align:center">Cảm ơn bạn đăng ký tài khoản, chúng tôi có gửi một Email kích hoạt tài khoản vào Email bạn đã đăng ký. Cảm ơn</p>';
+                }else{
+                    echo "<h1>". $this->translate("Đăng Ký") ."</h1>";
+                    echo $this->partial('partial/form', array('form' => $this->form));
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
